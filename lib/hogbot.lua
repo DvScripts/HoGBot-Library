@@ -2644,3 +2644,20 @@ function dropflask()
         dropitems(i, flaskCount)
     end
 end
+
+--- use lever on x y z position and ID or if no ID then default lever id
+--- @author  dworak
+--- @return  nil
+function uselever(x,y,z,id)
+    local levers = {2772, 2773}
+	if id then
+		levers = {id}
+	end
+	local curPosz = posz()
+	local itemposition = Position:new(x, y, z)
+	while curPosz == posz() do
+	    local topUseId = topuseitem(itemposition).id
+        useobject(itemposition, topUseId, 0, 0xFF)
+        wait(400,600)
+    end
+end
